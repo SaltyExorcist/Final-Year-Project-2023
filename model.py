@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 
 pretrained_model_path = "./models/clf.h5"
 
@@ -12,8 +13,9 @@ def predict_disease(image_matrix):
 
     # Make prediction
     prediction = model.predict(preprocessed_image)
+    labels = ["COVID19", "NORMAL", "PNEUMONIA", "TUBERCULOSIS"]
 
-    return prediction
+    return labels[np.argmax(prediction)]
 
 
 def preprocess_image(image_matrix):
